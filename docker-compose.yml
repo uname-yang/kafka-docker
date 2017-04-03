@@ -1,0 +1,30 @@
+version: '2.0'
+services:
+  zookeeper:
+    build: zookeeper
+    ports:
+      - "2181:2181"
+  kafka1:
+    build: kafka
+    ports:
+      - "10001:9092"
+    environment:
+      BROKER_ID: 1
+    links:
+      - zookeeper
+  kafka2:
+    build: kafka
+    ports:
+      - "10002:9092"
+    environment:
+      BROKER_ID: 2
+    links:
+      - zookeeper
+  kafka3:
+    build: kafka
+    ports:
+      - "10003:9092"
+    environment:
+      BROKER_ID: 3
+    links:
+      - zookeeper
